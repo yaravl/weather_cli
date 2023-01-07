@@ -2,9 +2,13 @@
   "name": "weather_cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "weather.js",
+  "bin": {
+    "weather": "weather.js"
+  },
+  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node weather.js"
   },
   "keywords": [],
   "author": "",
