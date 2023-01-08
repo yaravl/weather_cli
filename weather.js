@@ -1,7 +1,20 @@
 #!/usr/bin/env node
 import { getArgs } from "./helpers/args.js";
 import { printError, printHelp, printSuccess } from "./services/log.service.js";
-import { saveKeyValue } from "./services/storage.service.js";
+import { getKeyValue, saveKeyValue } from "./services/storage.service.js";
+
+const saveToken = async (token) => {
+  if (!token.length) {
+    printError("You need to add token");
+    return;
+  }
+  try {
+    await saveKeyValue("token", token);
+    printSuccess("Token saved");
+  } catch (e) {
+    printError(e.message);
+  }
+};
 
 const initCli = () => {
   const args = getArgs(process.argv);
@@ -14,10 +27,10 @@ const initCli = () => {
     // Сохранить город
   }
   if (args.t) {
-    saveKeyValue("token", args.t);
+    return saveToken(args.t);
   }
 
-  // вывести погоду
+  getKeyValue("asdasd");
 };
 
 initCli();

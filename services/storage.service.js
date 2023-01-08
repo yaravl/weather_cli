@@ -20,6 +20,7 @@ export const saveKeyValue = async (key, value) => {
 
   if (!(await isExists(dirPath))) {
     await mkdir(dirPath, { recursive: true });
+    console.log("Dir created");
   }
 
   if (await isExists(filePath)) {
@@ -29,5 +30,13 @@ export const saveKeyValue = async (key, value) => {
 
   data[key] = value;
   await writeFile(filePath, JSON.stringify(data), {});
-  console.log(data);
+};
+
+export const getKeyValue = async (key) => {
+  if (await isExists(filePath)) {
+    const file = await readFile(filePath);
+    const data = JSON.parse(file.toString());
+    return data[key];
+  }
+  return undefined;
 };
