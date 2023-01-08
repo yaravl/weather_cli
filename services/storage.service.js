@@ -6,6 +6,11 @@ const filePath = join(homedir(), "WeatherCLI", "weather-data.json");
 const dirPath = dirname(filePath);
 const fileExt = extname(filePath);
 
+export const STORAGE_DICTIONARY = {
+  token: "token",
+  city: "city",
+};
+
 const isExists = async (path) => {
   try {
     await stat(path);
